@@ -277,7 +277,7 @@ resource "aws_autoscaling_notification" "autoscaling_notifications" {
     "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
   ]
 
-  topic_arn = "arn:aws:sns:us-east-1:257111400340:analytics-pipeline-${var.environment}-slack"
+  topic_arn = "arn:aws:sns:us-east-1:257111400340:cluster-autoscaling-notifications"
 }
 
 resource "aws_autoscaling_policy" "scale_up" {
