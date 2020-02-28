@@ -261,6 +261,24 @@ resource "aws_autoscaling_group" "main" {
     propagate_at_launch = true
   }
 
+  tag {
+    key = "li:cost-center"
+    propagate_at_launch = false
+    value = "${var.cost_center}"
+  }
+
+  tag {
+    key = "li:environment"
+    propagate_at_launch = false
+    value = "${var.environment}"
+  }
+
+  tag {
+    key = "li:service"
+    propagate_at_launch = false
+    value = "ml-ecs-cluster"
+  }
+
   lifecycle {
     create_before_destroy = true
   }
