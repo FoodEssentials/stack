@@ -277,14 +277,15 @@ resource "aws_autoscaling_notification" "autoscaling_notifications" {
     "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
   ]
 
-  topic_arn = "${data.aws_sns_topic.cluster_autoscaling_notifications.arn}"
+  topic_arn = "${aws_sns_topic.cluster_autoscaling_notifications.arn}"
 }
 
 locals {
-  sns_topic = "cluster-autoscaling-notifications"
+  sns_topic = "${var.name}-cluster-autoscaling-notifications"
 }
 
-data "aws_sns_topic" "cluster_autoscaling_notifications" {
+
+resource "aws_sns_topic" "cluster_autoscaling_notifications" {
   name = "${local.sns_topic}"
 }
 
