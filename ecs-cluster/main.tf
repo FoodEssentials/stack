@@ -283,7 +283,7 @@ resource "aws_autoscaling_group" "main" {
   }
 
   tag {
-    key = "li:tean"
+    key = "li:team"
     propagate_at_launch = false
     value = "devops"
   }
