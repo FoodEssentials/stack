@@ -150,10 +150,12 @@ resource "aws_security_group" "cluster" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
-    Name        = "ECS cluster (${var.name})"
-    Environment = "${var.environment}"
-    CostCenter = "${var.cost_center}"
+  tags = {
+    Name = "ECS cluster (${var.name})"
+    "li:service-name" = "${var.name}"
+    "li:environment" = "${var.environment}"
+    "li:cost-center" = "${var.cost_center}"
+    "li:team" = "devops"
   }
 
   lifecycle {
@@ -163,6 +165,13 @@ resource "aws_security_group" "cluster" {
 
 resource "aws_ecs_cluster" "main" {
   name = "${var.name}"
+
+  tags = {
+    "li:service-name" = "${var.name}"
+    "li:environment" = "${var.environment}"
+    "li:cost-center" = "${var.cost_center}"
+    "li:team" = "devops"
+  }
 
   lifecycle {
     create_before_destroy = true
@@ -271,6 +280,12 @@ resource "aws_autoscaling_group" "main" {
     key = "li:environment"
     propagate_at_launch = false
     value = "${var.environment}"
+  }
+
+  tag {
+    key = "li:tean"
+    propagate_at_launch = false
+    value = "devops"
   }
 
   tag {
