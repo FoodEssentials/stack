@@ -272,25 +272,25 @@ resource "aws_autoscaling_group" "main" {
 
   tag {
     key = "li:cost-center"
-    propagate_at_launch = false
+    propagate_at_launch = true
     value = "${var.cost_center}"
   }
 
   tag {
     key = "li:environment"
-    propagate_at_launch = false
+    propagate_at_launch = true
     value = "${var.environment}"
   }
 
   tag {
     key = "li:team"
-    propagate_at_launch = false
+    propagate_at_launch = true
     value = "devops"
   }
 
   tag {
     key = "li:service"
-    propagate_at_launch = false
+    propagate_at_launch = true
     value = "ml-ecs-cluster"
   }
 
